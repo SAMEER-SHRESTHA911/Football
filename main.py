@@ -15,36 +15,54 @@ pygame.display.set_icon(icon)
 # changing the background
 back_ground = pygame.image.load('ground_800x605.jpg')
 
+# creating the player
+playerImg = pygame.image.load('ball.png')
+playerX = 370
+playerY = 480
+playerX_Change = 0
+def player(x,y):
+    screen.blit(playerImg, (x,y))
 
 game_time = True
 
-playerX = 370
-playerY = 480
-
-
-ball_vel = 5
-radius = 10
-ballX = 350
-ballY = 400 
 
 # game loop
 while game_time:
 
-    screen.fill((0,0,0))
-    screen.blit(back_ground,(0,0))
-    pygame.draw.circle(screen,(255,255,255),(ballX,ballY),radius)
+    screen.fill((0, 0, 0))
+    screen.blit(back_ground, (0, 0))
+
+
+ball_vel = 5
+ballX = 350
+ballY = 400 
 
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
             game_time = False
 
-#changing position of shooter 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        playerX -= 0.3
-    if keys[pygame.K_RIGHT]:
-        playerX += 0.3
 
+            # designing the movement of player
+        if events.type == pygame.KEYDOWN:
+            if events.key == pygame.K_LEFT:
+                    playerX_Change = -0.3
 
+            if events.key == pygame.K_RIGHT:
+                    playerX_Change = 0.3
+
+        if events.type == pygame.KEYUP:
+            if events.key == pygame.K_LEFT or events.key == pygame.K_RIGHT:
+                    playerX_Change = 0
+
+        # adding the boundary for player
+    playerX += playerX_Change
+    if playerX <= 0:
+        playerX = 0
+    elif playerX >= 768:
+        playerX = 768
+
+    player(playerX, playerY)
     pygame.display.update()
+
 pygame.quit()
+
