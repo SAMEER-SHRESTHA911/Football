@@ -5,7 +5,7 @@ import pygame
 pygame.init()
 
 # creating the window
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((800,605))
 
 # changing the title and logo
 pygame.display.set_caption("Free Kick")
@@ -25,15 +25,22 @@ def player(x,y):
 
 game_time = True
 
+
 # game loop
 while game_time:
 
     screen.fill((0, 0, 0))
     screen.blit(back_ground, (0, 0))
 
+
+ball_vel = 5
+ballX = 350
+ballY = 400 
+
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
             game_time = False
+
 
             # designing the movement of player
         if events.type == pygame.KEYDOWN:
@@ -56,3 +63,6 @@ while game_time:
 
     player(playerX, playerY)
     pygame.display.update()
+
+pygame.quit()
+
