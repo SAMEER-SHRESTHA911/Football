@@ -1,36 +1,35 @@
 import pygame
+
+
+# starting the game
 pygame.init()
 
-win = pygame.display.set_mode((800,800))
+# creating the window
+screen = pygame.display.set_mode((800,600))
 
-pygame.display.set_caption("FOOSBALL")
+# changing the title and logo
+pygame.display.set_caption("Free Kick")
+icon = pygame.image.load('icon.png')
+pygame.display.set_icon(icon)
 
-x=50
-y=50
-width=40
-height=40
-vel=5
-radius=10
+# changing the background
+back_ground = pygame.image.load('ground_800x605.jpg')
 
-run=True
-while run:
-    pygame.time.delay(100)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-   
-    keys = pygame.key.get_pressed()
-   
-    color = (0,0,255)
-    if keys[pygame.K_LEFT]:
-        x -= vel
-    if keys[pygame.K_RIGHT]:
-        x += vel
-    if keys[pygame.K_UP]:
-        y -= vel
-    if keys[pygame.K_DOWN]:
-        y += vel
-    win.fill((0,0,0))
-    pygame.draw.circle(win, color, (x,y),radius)
+
+game_time = True
+
+
+# game loop
+while game_time:
+
+    screen.fill((0,0,0))
+    screen.blit(back_ground,(0,0))
+
+    for events in pygame.event.get():
+        if events.type == pygame.QUIT:
+            game_time = False
+
+
+
+
     pygame.display.update()
-pygame.quit()
