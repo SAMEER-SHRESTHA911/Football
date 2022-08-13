@@ -1,5 +1,6 @@
 import pygame
-
+import math
+import time
 
 # starting the game
 pygame.init()
@@ -25,11 +26,17 @@ playerX_Change = 0
 # creating the goalpost
 goalpostImg = pygame.image.load('post.png')
 
+# loading the ball
+ballImg = pygame.image.load('ball.png')
+ball_State = "ready"
+
 def player(x,y):
-    screen.blit(playerImg, (x,y))
+    screen.blit(playerImg, (x, y))
+
+def ball_movement(a, b):
+    screen.blit(ballImg, (a, b))
 
 game_time = True
-
 
 # game loop
 while game_time:
@@ -39,9 +46,9 @@ while game_time:
     screen.blit(goalpostImg,(370,0))
 
 
-    ball_vel = 5
-    ballX = 350
-    ballY = 400
+    # ball_vel = 5
+    # ballX = 350
+    # ballY = 400
 
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
@@ -58,7 +65,7 @@ while game_time:
 
         if events.type == pygame.KEYUP:
             if events.key == pygame.K_LEFT or events.key == pygame.K_RIGHT:
-                    playerX_Change = 0
+                playerX_Change = 0
 
         # adding the boundary for player
     playerX += playerX_Change
@@ -66,6 +73,30 @@ while game_time:
         playerX = 25
     elif playerX >= 715:
         playerX = 715
+
+    m = pygame.mouse.get_pressed()
+
+    if m[0]:
+        # is_mouse_clicked(playerX, playerY)
+        print("mouse pressed")
+        ball_State = "shoot"
+        mouse_X, mouse_Y = pygame.mouse.get_pos()
+        radians = math.atan2(mouse_Y - playerY, mouse_X - playerX)
+        distance = math.hypot(mouse_X - playerX, mouse_Y - playerY)/0.9
+        distance1 = int(distance)
+        dx = math.cos(radians)*0.9
+        dy = math.sin(radians)*0.9
+        ballX = playerX
+        ballY = playerY
+
+    if ball_State == "shoot" and distance1 > 0:
+            distance1 -= 1
+            ballX += dx
+            ballY += dy
+            ball_movement(ballX, ballY)
+    else:
+        ball_State = "ready"
+
 
     player(playerX, playerY)
     pygame.display.update()
