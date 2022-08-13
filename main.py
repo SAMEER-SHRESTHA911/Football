@@ -32,7 +32,7 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 10
 opp_spacing = 150
-#changing rendering position of opponents
+#changing position of opponents
 for i in range(num_of_enemies): 
     for row in range(3):
         enemyImg = pygame.image.load("standing.png")
@@ -103,21 +103,21 @@ while game_time:
             if i == 1:
                 enemyX[i] += enemyX_change[i]
                 if enemyX[i] <= 0:
-                    enemyX_change[i] = i*0.4
+                    enemyX_change[i] = i/2*0.4
                 elif enemyX[i] >= 736:
-                    enemyX_change[i] = i*-0.4
+                    enemyX_change[i] = i/2*-0.4
             if i == 2:
                 enemyX[i] += enemyX_change[i]
                 if enemyX[i] <= 100:
-                    enemyX_change[i] = i*0.4
-                elif enemyX[i] >= 700:
-                    enemyX_change[i] = i*-0.4
+                    enemyX_change[i] = i/3*0.4
+                elif enemyX[i] >= 600:
+                    enemyX_change[i] = i/3*-0.4
             if i == 3:
                 enemyX[i] += enemyX_change[i]
                 if enemyX[i] <= 200:
-                    enemyX_change[i] = i/1.5*0.4
-                elif enemyX[i] >= 600:
-                    enemyX_change[i] = i/1.5*-0.4
+                    enemyX_change[i] = i/4*0.4
+                elif enemyX[i] >= 500:
+                    enemyX_change[i] = i/4*-0.4
 
 
         # adding the boundary for player
