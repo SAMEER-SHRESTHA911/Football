@@ -74,10 +74,10 @@ while game_time:
             # designing the movement of player
         if events.type == pygame.KEYDOWN:
             if events.key == pygame.K_LEFT:
-                    playerX_Change = -0.3
+                    playerX_Change = -1
 
             if events.key == pygame.K_RIGHT:
-                    playerX_Change = 0.3
+                    playerX_Change = 1
 
         if events.type == pygame.KEYUP:
             if events.key == pygame.K_LEFT or events.key == pygame.K_RIGHT:
@@ -105,16 +105,16 @@ while game_time:
                     enemyX_change[i] = i*-0.4
             if i == 2:
                 enemyX[i] += enemyX_change[i]
-                if enemyX[i] <= 200:
+                if enemyX[i] <= 100:
                     enemyX_change[i] = i*0.4
-                elif enemyX[i] >= 600:
+                elif enemyX[i] >= 700:
                     enemyX_change[i] = i*-0.4
             if i == 3:
                 enemyX[i] += enemyX_change[i]
-                if enemyX[i] <= 300:
-                    enemyX_change[i] = i*0.4
-                elif enemyX[i] >= 500:
-                    enemyX_change[i] = i*-0.4
+                if enemyX[i] <= 200:
+                    enemyX_change[i] = i/1.5*0.4
+                elif enemyX[i] >= 600:
+                    enemyX_change[i] = i/1.5*-0.4
 
 
         # adding the boundary for player
