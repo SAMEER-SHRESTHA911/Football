@@ -32,6 +32,7 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 10
 opp_spacing = 150
+#changing rendering position of opponents
 for i in range(num_of_enemies): 
     for row in range(3):
         enemyImg = pygame.image.load("standing.png")
@@ -95,6 +96,8 @@ while game_time:
 
             enemyX[i] += enemyX_change[i]
             opponent(enemyX[i], enemyY[i],i)
+    
+    #checking boundary of opponent and making them bounce back
     for i in range(num_of_enemies):    
         for row in range(3):
             if i == 1:
